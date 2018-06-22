@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 19.1.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 10.5 10.5" style="enable-background:new 0 0 10.5 10.5;" xml:space="preserve">
+<style type="text/css">
+	.st0{clip-path:url(#SVGID_2_);fill:none;stroke:#231F20;stroke-width:0.68;stroke-miterlimit:10;}
+	.st1{clip-path:url(#SVGID_2_);fill:none;stroke:#227CB5;stroke-width:0.68;stroke-miterlimit:10;}
+	.st2{clip-path:url(#SVGID_2_);fill:#227CB5;}
+	.st3{clip-path:url(#SVGID_2_);fill:none;stroke:#227CB5;stroke-width:0.68;stroke-linecap:round;stroke-linejoin:round;}
+	.st4{clip-path:url(#SVGID_2_);fill:#ED1C24;}
+	.st5{clip-path:url(#SVGID_2_);fill:none;stroke:#EB2B2B;stroke-width:0.68;stroke-miterlimit:10;}
+	.st6{clip-path:url(#SVGID_2_);fill:none;stroke:#F5822A;stroke-width:0.906;stroke-linejoin:round;stroke-miterlimit:10;}
+</style>
+<g>
+	<defs>
+		<rect id="SVGID_1_" x="-141.4" y="-17.5" width="283.9" height="82.2"/>
+	</defs>
+	<clipPath id="SVGID_2_">
+		<use xlink:href="#SVGID_1_"  style="overflow:visible;"/>
+	</clipPath>
+	<circle class="st0" cx="5.2" cy="5.2" r="4.9"/>
+	<line class="st1" x1="5.2" y1="5.2" x2="5.2" y2="3.4"/>
+	<polygon class="st2" points="6.1,4.1 5.2,3.7 4.4,4.1 5.2,2 	"/>
+	<line class="st3" x1="5.2" y1="5.2" x2="7.1" y2="7.1"/>
+	<polygon class="st2" points="8.3,8.3 6,7.3 7.1,7.1 7.3,6 	"/>
+	<path class="st4" d="M5.7,5.2c0,0.2-0.2,0.4-0.4,0.4C5,5.7,4.8,5.5,4.8,5.2C4.8,5,5,4.8,5.2,4.8C5.5,4.8,5.7,5,5.7,5.2"/>
+	<circle class="st5" cx="5.2" cy="5.2" r="0.4"/>
+	<line class="st6" x1="5.2" y1="1.6" x2="5.2" y2="0.7"/>
+	<line class="st6" x1="5.2" y1="9.8" x2="5.2" y2="8.9"/>
+	<line class="st6" x1="9.8" y1="5.2" x2="8.9" y2="5.2"/>
+	<line class="st6" x1="1.6" y1="5.2" x2="0.7" y2="5.2"/>
+</g>
+</svg>

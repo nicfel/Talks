@@ -1,0 +1,626 @@
+<!--
+---
+title: Inference of Population Structure from Genetic Sequence Data
+meeting: Ulm February 2018
+date: 2016-07-11
+category: talk
+---
+
+-->
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>Inference of Population Structure from Genetic Sequence Data</title>
+
+		<meta name="description" content="Inference of Population Structure from Genetic Sequence Data">
+		<meta name="author" content="Nicola Felix Müller">
+
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+		<link rel="stylesheet" href="../reveal.js/css/reveal.css">
+		<link rel="stylesheet" href="wb_theme.css" id="theme">
+
+		<!-- Code syntax highlighting -->
+		<link rel="stylesheet" href="../reveal.js/lib/css/zenburn.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? '../reveal.js/css/print/pdf.css' : '../reveal.js/css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+				<section class="titlepage">
+                    <h2>
+                        Inference of effective population sizes and migration rates using MASCOT
+                  	</h2>
+
+                    <div class="authors">Nicola Felix Müller</div>
+
+                    <div class="meeting">Taming the Beast 2018</div>
+										<img data-src="Logo_ttb2018.png" style="width:200px;box-shadow:none;margin-top:5%">
+										<img data-src="cEvo_logo.png" style="width:200px;box-shadow:none;margin-top:5%">
+										<img data-src="eth_logo.png" style="width:200px;box-shadow:none;margin-top:5%">
+				</section>
+
+				<!-- <section>
+						<h3>Joint work with:</h3>
+						<ul>
+							<li class="fragment">Tanja Stadler (ETH Zürich)</li>
+							<li class="fragment">David Rasmussen (North Carolina State)</li>
+							<li class="fragment">Gytis Dudas (Fred Hutch)</li>
+							<li class="fragment">Alexei Drummond (University of Auckland)</li>
+							<li class="fragment">Huw Ogilvie (Australian National University)</li>
+							<li class="fragment">Chi Zhang (Chinese Academy of Science)</li>
+						</ul>
+			</section> -->
+
+
+                <!-- <section> -->
+                    <!-- <section class="center">
+                        <h2>Background</h2>
+                    </section> -->
+
+                    <!-- <section>
+                        <h3>What is a phylogenetic tree?</h3>
+                        <div style="position:relative; width:800px; height:600px; margin:0 auto;">
+                            <div class="fragment current-visible"
+                                style="position:absolute">
+
+                                <br>
+
+                                <blockquote> A phylogenetic tree is a
+                                    branching diagram or "tree" showing the evolutionary
+                                    relationships between various species, individuals,
+                                    or genes.
+                                </blockquote>
+                            </div>
+                            <img class="fragment current-visible" width="600" style="margin:0px;padding:0px;"
+                                data-src="primate_tree.jpg"
+                                style="position:absolute;top:0;left:0;" />
+                            <div class="figure fragment"
+                                style="position:absolute;top:0;left:0;margin:0;padding:0;">
+                                <img width="800" data-src="flu_tree.png" style="margin:0px;padding:0px"/>
+                                <div class="cite">Bedford et al., PLoS Pathogens, 2010</div>
+                            </div>
+                        </div>
+                    </section> -->
+
+                    <!-- <section>
+                        <h3>Evolutionary processes</h3>
+												<br>
+                        Evolution is governed by three main processes:
+
+                        <ol>
+                            <li class="fragment"> <b>Reproduction</b> </li>
+                            <li class="fragment"> <b>Mutation</b> </li>
+                            <li class="fragment"> <b>Selection</b> </li>
+                        </ol>
+                    </section> -->
+
+                    <!-- <section>
+                        <h3>Genetic sequence data</h3>
+												<br>
+
+                        <blockquote>Genetic sequences are the result of evolution and therefore
+													contain information about the evolutionary process.</blockquote>
+
+                        <img class="fragment" data-src="primate_align.png"/>
+
+                    </section> -->
+
+
+										<!-- <section>
+												<h3>Sequences from trees</h3>
+
+												<br>
+												<blockquote>Observed sequences of related individuals
+													 	were "produced" by evolving a single ancestral sequence
+														down a tree $T$.</blockquote>
+												<img data-src="likelihood.svg" width="800">
+										</section>
+
+									</section> -->
+
+									<section>
+
+										<!-- <section class="center">
+												<h2>Population Priors</h2>
+										</section> -->
+
+
+
+										<!-- <section>
+												<h3>Goal of bayesian phylogenetics</h3>
+
+												<br>
+
+												<blockquote>To infer the evolutionary process, its parameters
+													and their certainty from sequence data.</blockquote>
+										</section> -->
+
+
+
+
+
+
+										<!-- <section>
+												<h3>BEAST2: Bayesian Evolutionary Analysis by Sampling Trees</h3>
+												<br>
+												<div class="figure">
+													<img data-src="workflow.png" height="350">
+													<div class="cite">Bouckaert et al., PLoS Computational Biology, 2014</div>
+												</div>
+										</ol>
+										</section>
+
+										<section>
+												<h3>BEAST2: Tutorials</h3>
+												<br>
+												<div class="figure">
+														<img data-src="logo_bw.svg" height="350">
+														<div class="cite">Barido-Sottani et al., Systematic Biology, 2017</div>
+												</div>
+												<br>
+												webpage: https://taming-the-beast.github.io/
+										</section> -->
+
+									<section>
+											<h3>Changes in e.g. the number of infected over time shapes phylogenetic trees</h3>
+											<div class="figure">
+													<img data-src="growth.png" height="350">
+													<div class="cite">Volz et al., PloS Comp. Biology, 2013</div>
+											</div>
+											<aside class="notes">
+												Processes such as transmission of pathogens create tree.
+												That process can be inferred from those trees.
+											</aside>
+
+									</section>
+
+									<section>
+											<h3>Posterior probability</h3>
+
+											<br>
+											<div class="figure">
+													<img data-src="posterior.svg" height="200">
+													<div class="cite">adapted from Plessis et al., Trends in microbiology, 2015</div>
+											</div>
+									</section>
+
+
+
+
+									<section>
+												<h3>Population priors allow us to calculate the probability of a
+												tree given a tree generating process and a set of parameters</h3>
+												<br>
+
+												<ul>
+														<li class="fragment">Birth-Death.</li>
+														<li class="fragment">Coalescent.</li>
+												</ul>
+
+												<aside class="notes">
+													The population process that generates trees can be highly complex.
+													Evolution on that tree creates sequence diversity.
+													Since tree create footprint in sequences, the process that generated the sequences leaves information in sequences
+												</aside>
+
+
+										</section>
+
+
+                    <section>
+                        <h3>How the coalescent process generates trees</h3>
+												N=8
+                        <div style="position:relative; width:750px; height:400px; margin:0 auto;">
+                            <img class="fragment current-visible" width="800" data-src="Coalescent.svg"
+                                 style="margin:0px;padding:0px;position:absolute;top:0;left:0;box-shadow:none;"/>
+                            <img class="fragment current-visible" width="800" data-src="Coalescent2.svg"
+                                 style="margin:0px;padding:0px;position:absolute;top:0;left:0;box-shadow:none;"/>
+                            <img class="fragment current-visible" width="800" data-src="Coalescent3.svg"
+                                 style="margin:0px;padding:0px;position:absolute;top:0;left:0;box-shadow:none;"/>
+                            <img class="fragment" width="800" data-src="Coalescent4.svg"
+                                 style="margin:0px;padding:0px;position:absolute;top:0;left:0;box-shadow:none;"/>
+                        </div>
+
+                        <ul>
+                            <li class="fragment">Probability that 2 lineages share a
+															 common ancestor in the previous generation $=\frac{1}{N(=8)}$</li>
+                        </ul>
+												<aside class="notes">
+													Probability that two lineages share a common ancestor in the previous generation.
+													If they share, they coalesced.
+													If done long enough, all lineages will eventually coalesce.
+													Probability directly depends on the number of bubbles
+												</aside>
+
+                    </section>
+
+                    <section>
+                        <h3>Changes in population sizes are
+												reflected in the shape of trees</h3>
+
+                        The smaller a population, the more likely individuals are
+												to coalesce.
+
+                        <div class="figure">
+                            <img data-src="mep.png" height="350">
+                            <div class="cite">Drummond et al., Trends in Ecology and Evolution, 2003</div>
+                        </div>
+                    </section>
+
+										<section>
+												<h3>HCV phylogeny contains information about ancestral population sizes</h3>
+
+												<div class="figure">
+														<img data-src="Pybus_tree.svg" height="450">
+														<div class="cite">Pybus et al., Journal of Virology, 2009</div>
+												</div>
+												<aside class="notes">
+													A lot of coalescent events around 1950.
+												</aside>
+
+										</section>
+
+										<section>
+												<h3>Phylodynamics: HCV in East-Asia</h3>
+
+												Phylodynamics allows to infer past population dynamics.
+
+												<div class="figure">
+														<img data-src="Pybus_Ne.svg" height="450">
+														<div class="cite">Pybus et al., Journal of Virology, 2009</div>
+												</div>
+												<aside class="notes">
+													Population growth around 1950.
+												</aside>
+
+										</section>
+
+
+										<section>
+												<h3>Population structure violates the assumptions of classic phylodynamic models</h3>
+                          <div class="figure">
+                              <img width="700" data-src="flu_tree.png"/>
+                              <div class="cite">Bedford et al., PLoS Pathogens, 2010</div>
+                          </div>
+													<aside class="notes">
+														The location of lineages is represented by the color.
+														Lineages with the same color cluster together.
+														The assumption that any two lineages are equally likely to coalesce is violated.
+													</aside>
+
+                    </section>
+
+                </section>
+								<section>
+									<!-- <section class="center">
+											<h2>Population structure</h2>
+									</section> -->
+
+									<section>
+											<h3>The structured coalescent allows to account for population structure</h3>
+
+											<div style="position:relative; width:800px; height:400px; margin:0 auto;">
+													<img class="fragment current-visible"
+															 style="margin:0px;padding:0px;position:absolute;top:0;left:0;box-shadow:none;"
+															 width="800" data-src="StructuredWF5.svg" />
+													<img class="fragment current-visible"
+															 style="margin:0px;padding:0px;position:absolute;top:0;left:0;box-shadow:none;"
+															 width="800" data-src="StructuredWF4.svg" />
+													<img class="fragment current-visible"
+															 style="margin:0px;padding:0px;position:absolute;top:0;left:0;box-shadow:none;"
+															 width="800" data-src="StructuredWF3.svg" />
+													<img class="fragment current-visible"
+															 style="margin:0px;padding:0px;position:absolute;top:0;left:0;box-shadow:none;"
+															 width="800" data-src="StructuredWF2.svg" />
+													<img class="fragment"
+															 style="margin:0px;padding:0px;position:absolute;top:0;left:0;box-shadow:none;"
+															 width="800" data-src="StructuredWF.svg" />
+											</div>
+
+									</section>
+
+
+
+									<section>
+											<h3>The structured coalescent is parameterised by effective population sizes and migration rates</h3>
+											<br>
+											<div class="figure">
+													<img data-src="migration_model.svg" height="350">
+													<div class="cite">http://popgen.sc.fsu.edu/Migrate/Blog/Entries/2013/3/22_forward-backward_migration_rates.html</div>
+											</div>
+
+											<aside class="notes">
+												number of location effective population sizes.
+												number of pairs of location migration rates.
+											</aside>
+
+									</section>
+
+									<section>
+											<h3>The structured coalescent requires to know where lineages were in the past</h3>
+												<div class="figure">
+														<img data-src="migration_History.svg" height="300">
+														<div class="cite">Vaughan et al., Bioinformatics, 2014</div>
+											</div>
+											<aside class="notes">
+												Inference of migration events requires MCMC sampling is quite expensive.
+											</aside>
+
+									</section>
+									<section>
+											<h3>The structured coalescent can be used to infer ancestral states in simple scenarios</h3>
+												<div class="figure">
+														<img data-src="mers_elife.jpg" height="400">
+														<div class="cite">Dudas et al., eLife, 2018</div>
+											</div>
+											<aside class="notes">
+												MERS to study transmission of camel to human. Transmission only inferred to be in one direction
+											</aside>
+									</section>
+
+									<!-- <section>
+										<h3>Several approaches that integrate over migration histories</h3>
+										<div class="figure fragment">
+												<img data-src="treeheight-eps-converted-to.svg" height="350">
+												<div class="cite">Müller et al., MBE, 2017</div>
+										</div>
+									</section>
+
+									<section>
+										<h3>Several approaches that integrate over migration histories</h3>
+										<div class="figure fragment">
+												<img data-src="Asymmetry-eps-converted-to.svg" height="350">
+												<div class="cite">Müller et al., MBE, 2017</div>
+										</div>
+									</section> -->
+
+
+
+
+									<section>
+											<h3>Integrating over every possible migration history drastically speeds up analysis</h3>
+											<br>
+											<div class="figure fragment">
+													<img data-src="ESS.svg" height="350">
+													<div class="cite">Müller et al., Bioinformatics, Accepted</div>
+													<div class="cite">Derivations: Müller et al., MBE, 2017</div>
+											</div>
+									</section>
+
+									<!-- <section>
+											<h3>Speed up allows to consider more complex scenarios: AIV</h3>
+											<br>
+											<div class="figure fragment">
+													<img data-src="AIV.svg" height="350">
+													<div class="cite">Müller et al., MBE, 2017</div>
+											</div>
+										</section> -->
+										<section>
+											<h3>Speed up allows to consider more complex scenarios: H3N2</h3>
+											<br>
+											<div class="figure fragment">
+													<img data-src="H3N2.svg" height="350">
+													<div class="cite">Müller et al., Bioinformatics, Accepted</div>
+											</div>
+									</section>
+
+
+							<section>
+									<h3>Problem: The number of parameters grows quadratically with the number of locations</h3>
+									<br>
+									<p class="fragment">Use additional data source to inform parameters. For example:</p>
+									<ol>
+											<li class="fragment">Population size and density of host populations.</li>
+											<li class="fragment">Movement data between different locations.</li>
+									</ol>
+									<p class="fragment">Use predictors to inform effective population sizes and migration rates by using a GLM:</p>
+
+									<br>
+									<br>
+							</section>
+
+							<section>
+									<h3>2014 Sierra Leone Ebola outbreak</h3>
+									<br>
+									<ol>
+											<li class="fragment">Migration rate predictors: Distances between locations and origin/destination effects, such as population size at origin or destination .</li>
+											<li class="fragment">Ne predictors: Weekly case data, travel times to cities, population density, etc.</li>
+									</ol>
+									<br>
+							</section>
+
+
+							<section>
+									<h3>2014 Sierra Leone Ebola outbreak</h3>
+									<div class="figure fragment">
+											<img data-src="Ebola.svg" height="500">
+											<div class="cite">Müller et al., BioRxiv, 2018</div>
+									</div>
+									<aside class="notes">
+										Weekly case data strongest and only predictor shows us that also on real data, we get the results that we should expect.
+										Destination origin effects are random effects migration from or to a county being more or less strong than expected by chance.
+
+									</aside>
+
+							</section>
+
+							<section>
+									<h3>Tutorial: MASCOT</h3>
+									<br>
+									https://taming-the-beast.github.io/
+							</section>
+
+
+							<!-- <section>
+									<h3>Generalized linear models and MASCOT</h3>
+									<br>
+									<ul>
+											<li class="fragment">GLM is implemented as part of MASCOT.</li>
+											<li class="fragment">Allows to co-infer the contribution of predictors, ancestral locations
+												phylogenetic trees etc. from sequence data.</li>
+											<li class="fragment">Not yet public, but will come with a tutorial on https://taming-the-beast.github.io/.</li>
+									</ul>
+							</section> -->
+
+
+						</section>
+
+						<!-- <section>
+							<section class="center">
+									<h2>Isolation-with-Migration models</h2>
+						</section>
+
+							<section>
+								<h3> Multi-Species Coalescent describe the evolutionary relationship of species</h3>
+								<br>
+								<p class="fragment">gene trees denote the evolutionary relationship one of genes.</p>
+								<div class="figure fragment">
+										<img data-src="Species_Tree.jpg" height="300">
+										<div class="cite">Mallo et. al, Phil. Trans. R. Soc. B, 2016</div>
+								</div>
+							</section>
+
+							<section>
+								<h3> MSC models the history of genes as a separate coalescent process in each species</h3>
+								<br>
+								<div class="figure fragment">
+										<img data-src="MSC.jpeg" height="300">
+										<div class="cite">Leliaert et. al, European Journal of Phycology, 2014</div>
+								</div>
+							</section>
+
+
+							<section>
+								<h3>Isolation-with-Migration models</h3>
+								<div class="figure">
+										<img data-src="IM.png" height="500">
+										<div class="cite">Hey, Molecular Biology and Evolution, 2010</div>
+								</div>
+							</section>
+
+							<section>
+								<h3>Species history of great apes using AIM</h3>
+								<br>
+								<div class="figure fragment">
+										<img data-src="GreatApes.svg" height="450">
+										<div class="cite">Müller et. al, in preparation</div>
+								</div>
+							</section>
+
+							<section>
+								<h3>AIM: Approximate Isolation-with-Migration</h3>
+								<br>
+								<ul>
+										<li class="fragment">Allows to infer the species tree alongside parameters of interest
+										from genetic sequence data of different loci.</li>
+										<li class="fragment">Implemented as part of StarBEAST2.</li>
+								</ul>
+							</section>
+
+						</section> -->
+
+
+						<section>
+							<!-- <section>
+									<h3>Workshop</h3>
+									<div class="figure">
+											<img data-src="Logo_ttb2018.png" height="150">
+									</div>
+									<p>
+										Taming the Beast workshop in Oberägeri (CH) from the 17th until the 22nd of June 2018
+									</p>
+									<p>
+										https://www.bsse.ethz.ch/cevo/taming-the-beast.html
+									</p>
+							</section> -->
+
+							<section>
+									<h3>Acknowledgement</h3>
+									<ul>
+										<li class="fragment">Tanja Stadler (ETH Zürich)</li>
+										<li class="fragment">David Rasmussen (North Carolina State)</li>
+										<li class="fragment">Gytis Dudas (Fred Hutch)</li>
+										<!-- <li class="fragment">Alexei Drummond (University of Auckland)</li>
+										<li class="fragment">Huw Ogilvie (Australian National University)</li>
+										<li class="fragment">Chi Zhang (Chinese Academy of Science)</li> -->
+									</ul>
+
+
+									<div class="figure fragment">
+										<img data-src="SNF.gif" style="width:200px;box-shadow:none;margin-top:5%">
+										<img data-src="sib_logo.jpg" style="width:200px;box-shadow:none;margin-top:5%">
+									</div>
+						</section>
+
+
+
+
+
+						</section>
+
+
+
+			</div>
+
+		</div>
+
+		<script src="../reveal.js/lib/js/head.min.js"></script>
+		<script src="../reveal.js/js/reveal.js"></script>
+
+		<script>
+
+			// Full list of configuration options available at:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: false,
+                mouseWheel: true,
+
+				transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+                math: {
+                    mathjax: 'https://cdn.mathjax.org/mathjax/latest/MathJax.js',
+                    config: 'TeX-AMS_HTML-full'  // See http://docs.mathjax.org/en/latest/config-files.html
+                },
+
+				// Optional reveal.js plugins
+				dependencies: [
+					{ src: '../reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: '../reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: '../reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: '../reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: '../reveal.js/plugin/zoom-js/zoom.js', async: true },
+					{ src: '../reveal.js/plugin/notes/notes.js', async: true },
+                    { src: '../reveal.js/plugin/math/math.js', async: true }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>

@@ -1,0 +1,258 @@
+<!--
+---
+title: Inference of Population Structure from Genetic Sequence Data
+meeting: Ulm February 2018
+date: 2016-07-11
+category: talk
+---s
+
+-->
+<!doctype html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+
+	<title>Inference of Population Structure from Genetic Sequence Data</title>
+
+	<meta name="description" content="Inference of Population Structure from Genetic Sequence Data">
+	<meta name="author" content="Nicola Felix Müller">
+
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+	<link rel="stylesheet" href="../reveal.js/css/reveal.css">
+	<link rel="stylesheet" href="wb_theme.css" id="theme">
+
+	<!-- Code syntax highlighting -->
+	<link rel="stylesheet" href="../reveal.js/lib/css/zenburn.css">
+
+	<!-- Printing and PDF exports -->
+	<script>
+	var link = document.createElement( 'link' );
+	link.rel = 'stylesheet';
+	link.type = 'text/css';
+	link.href = window.location.search.match( /print-pdf/gi ) ? '../reveal.js/css/print/pdf.css' : '../reveal.js/css/print/paper.css';
+	document.getElementsByTagName( 'head' )[0].appendChild( link );
+	</script>
+
+	<!--[if lt IE 9]>
+	<script src="lib/js/html5shiv.js"></script>
+	<![endif]-->
+</head>
+
+<body>
+
+	<div class="reveal">
+
+		<!-- Any section element inside of this container is displayed as a slide -->
+		<div class="slides">
+			<section class="titlepage">
+				<h2>
+					Multi-Species Models
+				</h2>
+
+				<div class="authors">Nicola Felix Müller</div>
+
+				<div class="meeting">Taming the Beast 2018</div>
+				<img data-src="Logo_ttb2018.png" style="width:200px;box-shadow:none;margin-top:5%">
+				<img data-src="cEvo_logo.png" style="width:200px;box-shadow:none;margin-top:5%">
+				<img data-src="eth_logo.png" style="width:200px;box-shadow:none;margin-top:5%">
+			</section>
+
+			<section>
+				<section>
+					<h3>Posterior probability</h3>
+
+					<br>
+					<div class="figure">
+						<img data-src="posterior.svg" height="200">
+						<div class="cite">adapted from Plessis et al., Trends in microbiology, 2015</div>
+					</div>
+				</section>
+
+				<section>
+					<h3>Population priors allow us to calculate the probability of a
+						tree given a tree generating process and a set of parameters</h3>
+						<br>
+
+						<ul>
+							<li class="fragment">Birth-Death (Forward in time).</li>
+							<li class="fragment">Coalescent (Backward in time).</li>
+						</ul>
+					</section>
+
+
+					<section>
+						<h3>How the coalescent process generates trees</h3>
+						N=8
+						<div style="position:relative; width:750px; height:400px; margin:0 auto;">
+							<img class="fragment current-visible" width="800" data-src="Coalescent.svg"
+							style="margin:0px;padding:0px;position:absolute;top:0;left:0;box-shadow:none;"/>
+							<img class="fragment current-visible" width="800" data-src="Coalescent2.svg"
+							style="margin:0px;padding:0px;position:absolute;top:0;left:0;box-shadow:none;"/>
+							<img class="fragment current-visible" width="800" data-src="Coalescent3.svg"
+							style="margin:0px;padding:0px;position:absolute;top:0;left:0;box-shadow:none;"/>
+							<img class="fragment" width="800" data-src="Coalescent4.svg"
+							style="margin:0px;padding:0px;position:absolute;top:0;left:0;box-shadow:none;"/>
+						</div>
+
+						<ul>
+							<li class="fragment">Probability that 2 lineages share a
+								common ancestor in the previous generation $=\frac{1}{N(=8)}$</li>
+							</ul>
+							<aside class="notes">
+								Probability that two lineages share a common ancestor in the previous generation.
+								If they share, they coalesced.
+								If done long enough, all lineages will eventually coalesce.
+								Probability directly depends on the number of bubbles
+							</aside>
+
+						</section>
+
+						<section>
+							<h3>Changes in population sizes are
+								reflected in the shape of trees</h3>
+
+								The smaller a population, the more likely individuals are
+								to coalesce.
+
+								<div class="figure">
+									<img data-src="mep.png" height="350">
+									<div class="cite">Drummond et al., Trends in Ecology and Evolution, 2003</div>
+								</div>
+							</section>
+
+							<section>
+								<h3>The structured coalescent allows to account for population structure</h3>
+
+								<div style="position:relative; width:800px; height:400px; margin:0 auto;">
+									<img class="fragment current-visible"
+									style="margin:0px;padding:0px;position:absolute;top:0;left:0;box-shadow:none;"
+									width="800" data-src="StructuredWF5.svg" />
+									<img class="fragment current-visible"
+									style="margin:0px;padding:0px;position:absolute;top:0;left:0;box-shadow:none;"
+									width="800" data-src="StructuredWF4.svg" />
+									<img class="fragment current-visible"
+									style="margin:0px;padding:0px;position:absolute;top:0;left:0;box-shadow:none;"
+									width="800" data-src="StructuredWF3.svg" />
+									<img class="fragment current-visible"
+									style="margin:0px;padding:0px;position:absolute;top:0;left:0;box-shadow:none;"
+									width="800" data-src="StructuredWF2.svg" />
+									<img class="fragment"
+									style="margin:0px;padding:0px;position:absolute;top:0;left:0;box-shadow:none;"
+									width="800" data-src="StructuredWF.svg" />
+								</div>
+
+							</section>
+
+
+							<section>
+								<h3>Gene trees denote the evolutionary relationship of genes that evolve within populations of species</h3>
+								<div class="figure fragment">
+									<img data-src="Species_Tree.jpg" height="300">
+									<div class="cite">Mallo et. al, Phil. Trans. R. Soc. B, 2016</div>
+								</div>
+							</section>
+
+							<section>
+								<h3>MSC models the history of genes as a separate coalescent process in each species</h3>
+								<br>
+								<div class="figure fragment">
+									<img data-src="MSC.jpeg" height="300">
+									<div class="cite">Leliaert et. al, European Journal of Phycology, 2014</div>
+								</div>
+							</section>
+
+							<section>
+								<h3>What is the prior of the species tree</h3>
+								<br>
+								<ul>
+									<li class="fragment">Birth-Death?</li>
+									<li class="fragment">Coalescent?</li>
+								</ul>
+							</section>
+
+							<section>
+								<h3>Why are we using a coalescent model for the gene and a birth-death model for the species trees?</h3>
+								<br>
+								<ul>
+									<li class="fragment">Coalescent models assume large population sizes and small sampling fraction.</li>
+									<li class="fragment">Birth-Death models can account for large sampling fractions.</li>
+								</ul>
+							</section>
+
+							<section>
+								<h3>Some StarBeast2 features:</h3>
+								<br>
+								<ul>
+									<li class="fragment">Species Clocks.</li>
+									<li class="fragment">Sampling through time</li>
+								</ul>
+							</section>
+
+
+
+
+
+							<section>
+								<h3>Isolation-with-Migration models</h3>
+								<div class="figure">
+									<img data-src="IM.png" height="500">
+									<div class="cite">Hey, Molecular Biology and Evolution, 2010</div>
+								</div>
+							</section>
+
+							<section>
+								<h3>Shameless Advertising: Species history of great apes using AIM</h3>
+								<br>
+								<div class="figure fragment">
+									<img data-src="GreatApes.svg" height="450">
+									<div class="cite">Müller et. al, BioRxiv, 2018</div>
+								</div>
+							</section>
+						</section>
+
+					</div>
+
+				</div>
+
+				<script src="../reveal.js/lib/js/head.min.js"></script>
+				<script src="../reveal.js/js/reveal.js"></script>
+
+				<script>
+
+				// Full list of configuration options available at:
+				// https://github.com/hakimel/reveal.js#configuration
+				Reveal.initialize({
+					controls: true,
+					progress: true,
+					history: true,
+					center: false,
+					mouseWheel: true,
+
+					transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+					math: {
+						mathjax: 'https://cdn.mathjax.org/mathjax/latest/MathJax.js',
+						config: 'TeX-AMS_HTML-full'  // See http://docs.mathjax.org/en/latest/config-files.html
+					},
+
+					// Optional reveal.js plugins
+					dependencies: [
+						{ src: '../reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+						{ src: '../reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+						{ src: '../reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+						{ src: '../reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+						{ src: '../reveal.js/plugin/zoom-js/zoom.js', async: true },
+						{ src: '../reveal.js/plugin/notes/notes.js', async: true },
+						{ src: '../reveal.js/plugin/math/math.js', async: true }
+					]
+				});
+
+				</script>
+
+			</body>
+			</html>
